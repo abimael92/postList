@@ -4,19 +4,14 @@ import Post from './Post';
 import classes from './PostsList.module.css';
 
 function PostsList() {
-	const posts = useLoaderData();
+	const data = useLoaderData();
+	const posts = data.posts;
 
 	if (posts.error) {
 		return (
 			<div style={{ textAlign: 'center', color: 'red' }}>
 				<h2>Error: Database not found.</h2>
 			</div>
-		);
-	}
-
-	if (!posts) {
-		return (
-			<p style={{ textAlign: 'center', color: 'white' }}>Loading...</p>
 		);
 	}
 
