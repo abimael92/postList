@@ -1,13 +1,9 @@
-import { MouseEventHandler } from 'react';
+import { Link } from 'react-router-dom';
 import { MdPostAdd, MdMessage } from 'react-icons/md';
 
 import classes from './MainHeader.module.css';
 
-interface MainHeaderProps {
-	onCreatePost: MouseEventHandler<HTMLButtonElement>;
-}
-
-function MainHeader({ onCreatePost }: MainHeaderProps): JSX.Element {
+function MainHeader({ isDbConnected }) {
 	return (
 		<header className={classes.header}>
 			<h1 className={classes.logo}>
@@ -15,10 +11,15 @@ function MainHeader({ onCreatePost }: MainHeaderProps): JSX.Element {
 				React Poster
 			</h1>
 			<p>
-				<button className={classes.button} onClick={onCreatePost}>
+				<Link
+					to='/create-post'
+					className={`${classes.button} ${
+						!isDbConnected ? classes.disabled : ''
+					}`}
+					disabled={!isDbConnected}>
 					<MdPostAdd size={18} />
 					New Post
-				</button>
+				</Link>
 			</p>
 		</header>
 	);
